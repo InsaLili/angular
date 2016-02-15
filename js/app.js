@@ -1,4 +1,4 @@
-var routerApp = angular.module('routerApp', ['ui.router', 'ngGrid', 'BookListModule', 'BookDetailModule']);
+var routerApp = angular.module('routerApp', ['ui.router', 'AppListModule']);
 /**
  * 由于整个应用都会和路由打交道，所以这里把$state和$stateParams这两个对象放到$rootScope上，方便其它地方引用和注入。
  * 这里的run方法只会在angular启动的时候运行一次。
@@ -25,35 +25,38 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('index', {
             url: '/index',
-            views: {
-                '': {
-                    templateUrl: 'tpls/home.html'
-                },
-                'stage@index': {
-                    templateUrl: 'tpls/stage.html'
-                },
-                'preview@index':{
-                    templateUrl: 'tpls/preview.html'
-                },
-                'setmap@index':{
-                    templateUrl: 'tpls/setmap.html'
-                }
-            }
+            templateUrl: 'tpls/home.html'
         })
         .state('setmap', {
-            url: '/{mapType:[0-9]{1,4}}',
-            views: { //注意这里的写法，当一个页面上带有多个ui-view的时候如何进行命名和视图模板的加载动作
-                '': {
-                    templateUrl: 'tpls/bookList.html'
-                },
-                'booktype@booklist': {
-                    templateUrl: 'tpls/bookType.html'
-                },
-                'bookgrid@booklist': {
-                    templateUrl: 'tpls/bookGrid.html'
-                }
-            }
+            url: '/setmap',
+            templateUrl: 'tpls/setmap.html'
         })
+        .state('setmap.setcoord', {
+            url: '/setcoord',
+            templateUrl: 'tpls/setcoord.html'
+        })
+        .state('setmap.setmarker', {
+            url: '/setmarker',
+            templateUrl: 'tpls/setmarker.html'
+        })
+        .state('setmap.seteval', {
+            url: '/seteval',
+            templateUrl: 'tpls/seteval.html'
+        })
+        // .state('setmap', {
+        //     url: '/{mapType:[0-9]{1,4}}',
+        //     views: { //注意这里的写法，当一个页面上带有多个ui-view的时候如何进行命名和视图模板的加载动作
+        //         '': {
+        //             templateUrl: 'tpls/bookList.html'
+        //         },
+        //         'booktype@booklist': {
+        //             templateUrl: 'tpls/bookType.html'
+        //         },
+        //         'bookgrid@booklist': {
+        //             templateUrl: 'tpls/bookGrid.html'
+        //         }
+        //     }
+        // })
         // .state('addbook', {
         //     url: '/addbook',
         //     templateUrl: 'tpls/addBookForm.html'

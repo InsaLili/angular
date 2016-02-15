@@ -1,14 +1,39 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-6">
-    		<div ui-view="stage">
-    			loading the stage...
-    		</div>			
-		</div>
-		<div class="col-md-6">
-    		<div ui-view="preview">
-    			loading the preview
-    		</div>			
-		</div>
+<div class="row" ng-controller="AppListCtrl">
+	<div class="col-md-offset-2 col-md-4">
+		<form class="form-horizontal" role="form" name="form">
+			<h3>Framework</h3>
+			<div class="form-group">
+				<label class="col-md-6 control-label">Choose the background type</label>
+				<div class="col-md-6">
+					<select class="form-control" ng-model="appstyle">
+						<option>Map</option>
+						<option>Figure</option>
+						<option>Text</option>
+						<option>None</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-6 control-label">Number of students</label>
+				<div class="col-md-6">
+					<select class="form-control" ng-model="studentnum">
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-10 col-md-2">
+					<a class="btn btn-default alignRight" ui-sref="setmap">Next</a>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="col-md-4">
+		<img src="" alt="">
+		<p>{{ user.type }}</p>
+		<p>{{ user.studentNum }}</p>
 	</div>
 </div>
