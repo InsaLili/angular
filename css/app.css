@@ -1,6 +1,10 @@
 body{
-	background-color: #eee;
+	background-color: #fafafa;
 }
+.nav, .pagination, .carousel, .panel-title a {
+    cursor: pointer;
+}
+
 .item{
 	margin-bottom: 10px;
 	padding-bottom: 10px;
@@ -9,8 +13,12 @@ body{
 .list-group-item{
 	height: 40px;
 }
-#addMarker{
+.markerArea{
 	padding: 10px;
 	background-color: #fff; 
 	border: 1px solid #E0E0E0;
+}
+#showMarkers{
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
