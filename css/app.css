@@ -1,11 +1,16 @@
-.nav, .pagination, .carousel, .panel-title a {
-    cursor: pointer;
+body{
+	background-color: #eee;
 }
-.gridStyle {
-    border: 1px solid rgb(212, 212, 212);
-    height: 300px
+.item{
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #E0E0E0;
 }
-
-.alignRight{
-	text-align: right;
+.list-group-item{
+	height: 40px;
+}
+#addMarker{
+	padding: 10px;
+	background-color: #fff; 
+	border: 1px solid #E0E0E0;
 }

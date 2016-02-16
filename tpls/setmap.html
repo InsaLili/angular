@@ -1,13 +1,95 @@
-<div class="row">
-	<div class="col-md-offset-2 col-md-8">
-		<nav class="navbar navbar-inverse" role="navigation">
-		    <ul class="nav navbar-nav">
-		        <li class="active"><a ui-sref=".setcoord">Coordination</a></li>
-		        <li><a ui-sref=".setmarker">Add marker</a></li>
-		        <li><a ui-sref=".seteval">Evaluation style</a></li>
-		    </ul>
-		</nav>
+<div class="row container" ng-controller="MapSetCtrl">
+	<div class="col-md-offset-2 col-md-10">
+		<h1>Set your map</h1>
+		<div class="row item">
+			<form class="form-horizontal" role="form" name="form">
+				<div class="col-md-4">
+					<h4>Set the coordination</h4>				
+				</div>
+				<div class="col-md-8">
+					<div class="form-group">
+						<label class="col-md-3 control-label">Longtitude</label>
+						<div class="col-md-6">
+							<input type="text" class="form-control" placeholder="ex: 12.3456" ng-model="longtitude">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">Laititude</label>
+						<div class="col-md-6">
+							<input type="text" class="form-control" placeholder="ex: 12.3456" ng-model="laititude">
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="row item">
+			<div class="col-md-4">
+				<h4>Markers</h4>
+			</div>
+			<div class="col-md-8">
+				<div id="makers">
+					<ul class="list-group">
+						<li class="list-group-item" ng-repeat="marker in markers">
+							{{marker.name}}<button type="button" class="deleteMarkerBtn btn btn-default btn-xs pull-right" ng-click="deleteMarker($event,marker)"><span class="glyphicon glyphicon-trash"></span></button><button type="button" class="editMarkerBtn btn btn-default btn-xs pull-right" ng-click="editMarker()"><span class="glyphicon glyphicon-edit"></span></button>
+						</li>
+					</ul>
+				</div>
+				<button class="btn btn-info" id="addMarkerBtn" data-toggle="collapse" data-target="#addMarker"><span class="glyphicon glyphicon-plus"></span>  Add marker</button>
 
-		<div ui-view></div>
+				<form class="form-horizontal collapse" role="form" name="form" id="addMarker">
+					<div class="form-group">
+						<label class="control-label col-md-3">
+							Name
+						</label>
+						<div class="col-md-6">
+							<input type="text" class="form-control" ng-model="add.name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3">
+							Longtitude
+						</label>
+						<div class="col-md-6">
+							<input type="text" class="form-control" placeholder="ex: 12.3456" ng-model="add.longtitude">
+						</div>
+					</div>					
+					<div class="form-group">
+						<label class="control-label col-md-3">
+							Laititude
+						</label>
+						<div class="col-md-6">
+							<input type="text" class="form-control" placeholder="ex: 12.3456" ng-model="add.laititude">
+						</div>
+					</div>					
+					<div class="form-group">
+						<label class="control-label col-md-3">
+							Data
+						</label>
+						<div class="col-md-9">
+							<textarea class="form-control" ng-model="add.data" rows="3"></textarea>
+						</div>
+					</div>
+					<button class="btn btn-default" id="saveMarker" ng-click="addMarker()"><span class="glyphicon glyphicon-floppy-disk"></span>  Save</button>
+				</form>
+			</div>
+		</div>
+		<div class="row item">
+			<div class="col-md-4">
+				<h4>Choose an evaluation style</h4>
+			</div>
+			<div class="col-md-8">
+				<div class="btn-group" data-toggle="buttons">
+					<div class="radio">
+						<label><input type="radio" name="optradio" value="star" ng-model="eval">Star evaluation</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="optradio" value="heart" ng-model="eval">Red heart evaluation</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="stepBtn">
+			<a class="btn btn-default pull-right" ng-click="setMap()">Submit</a>
+		</div>
 	</div>
 </div>
