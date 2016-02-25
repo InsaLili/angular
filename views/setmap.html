@@ -1,6 +1,7 @@
 <div class="row container" ng-controller="MapSetCtrl">
 	<div class="col-md-offset-2 col-md-10">
 		<h1>Set your map</h1>
+		<!-- set the corrdination of the map -->
 		<div class="row item">
 			<form class="form-horizontal" role="form" name="form">
 				<div class="col-md-4">
@@ -22,6 +23,7 @@
 				</div>
 			</form>
 		</div>
+		<!-- set markers of the map -->
 		<div class="row item">
 			<div class="col-md-4">
 				<h4>Markers</h4>
@@ -32,7 +34,7 @@
 						<div class="panel-heading">
 							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#accordion" data-target="#marker-{{$index}}">{{marker.name}}</a>
-								<button type="button" class="deleteMarkerBtn btn btn-default btn-xs pull-right" ng-click="deleteMarker($event,marker)"><span class="glyphicon glyphicon-trash"></span></button>
+								<button type="button" class="deleteMarkerBtn btn btn-default btn-xs pull-right" ng-click="deleteItem($event,marker,markers)"><span class="glyphicon glyphicon-trash"></span></button>
 							</h4>
 						</div>
 						<div id="marker-{{$index}}" class="panel-collapse collapse">
@@ -81,7 +83,7 @@
 							Name
 						</label>
 						<div class="col-md-6">
-							<input type="text" class="form-control" ng-model="add.name">
+							<input type="text" class="form-control" ng-model="newMarker.name">
 						</div>
 					</div>
 					<div class="form-group">
@@ -89,7 +91,7 @@
 							Longtitude
 						</label>
 						<div class="col-md-6">
-							<input type="text" class="form-control" placeholder="ex: 12.3456" ng-model="add.longtitude">
+							<input type="text" class="form-control" placeholder="ex: 12.3456" ng-model="newMarker.longtitude">
 						</div>
 					</div>					
 					<div class="form-group">
@@ -97,7 +99,7 @@
 							Laititude
 						</label>
 						<div class="col-md-6">
-							<input type="text" class="form-control" placeholder="ex: 12.3456" ng-model="add.laititude">
+							<input type="text" class="form-control" placeholder="ex: 12.3456" ng-model="newMarker.laititude">
 						</div>
 					</div>					
 					<div class="form-group">
@@ -105,13 +107,37 @@
 							Data
 						</label>
 						<div class="col-md-9">
-							<textarea class="form-control" ng-model="add.data" rows="3"></textarea>
+							<textarea class="form-control" ng-model="newMarker.data" rows="3"></textarea>
 						</div>
 					</div>
 					<button class="btn btn-default" id="saveMarker" ng-click="addMarker()"><span class="glyphicon glyphicon-floppy-disk"></span>  Save</button>
 				</form>
 			</div>
 		</div>
+
+		<!-- set the steps -->
+		<div class="row item">
+			<div class="col-md-4">
+				<h4>Clarify steps of the task</h4>
+			</div>
+			<div class="col-md-8">
+				<form class="form-horizontal" role="form" name="form">
+					<div class="form-group" ng-repeat="step in steps track by $index">
+						<label class="control-label col-md-2">
+							Etape {{$index+1}}
+						</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control"  placeholder="description of the step" ng-model="step.content">
+						</div>
+						<label class="control-label"><button type="button" class="deleteStepBtn btn btn-default btn-xs" ng-click="deleteItem($event,step,steps)"><span class="glyphicon glyphicon-trash"></span></button></label>
+					</div>
+				</form>
+
+				<button class="btn btn-info" id="addStepBtn" ng-click="addStep()"><span class="glyphicon glyphicon-plus"></span>  Add Step</button>
+
+			</div>
+		</div>
+		<!-- choose the evaluation style -->
 		<div class="row item">
 			<div class="col-md-4">
 				<h4>Choose an evaluation style</h4>
@@ -127,6 +153,42 @@
 				</div>
 			</div>
 		</div>
+		<!-- set the groups -->
+		<div class="row item">
+			<div class="col-md-4">
+				<h4>Set groups of students</h4>
+			</div>
+			<div class="col-md-8">
+				<form class="form-horizontal" role="form" name="form">
+					<div class="form-group" ng-repeat="group in groups track by $index">
+						<label class="control-label col-md-2">
+							Group {{$index+1}}
+						</label>
+						<label class="control-label col-md-1">
+							Name: 
+						</label>
+						<div class="col-md-4">
+							<input type="text" class="form-control"  placeholder="group name" ng-model="group.name">
+						</div>
+						<label class="control-label col-md-2">
+							Students: 
+						</label>
+						<div class="col-md-2">
+							<select class="form-control" ng-model="group.student">
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+							</select>
+						</div>
+						<label class="control-label"><button type="button" class="deleteGroupBtn btn btn-default btn-xs" ng-click="deleteItem($event,group,groups)"><span class="glyphicon glyphicon-trash"></span></button></label>
+					</div>
+				</form>
+
+				<button class="btn btn-info" id="addGroupBtn" ng-click="addGroup()"><span class="glyphicon glyphicon-plus"></span>  Add Group</button>
+
+			</div>
+		</div>
+		<!-- submit changes -->
 		<div class="stepBtn">
 			<a class="btn btn-default pull-right" ng-click="setMap()">Submit</a>
 		</div>

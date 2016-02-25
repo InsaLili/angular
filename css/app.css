@@ -13,7 +13,7 @@ body{
 .list-group-item{
 	height: 40px;
 }
-.markerArea{
+.markerArea, .stepArea{
 	padding: 10px;
 	background-color: #fff; 
 	border: 1px solid #E0E0E0;

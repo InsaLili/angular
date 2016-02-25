@@ -1,61 +1,66 @@
 
 var mapSetModule = angular.module("MapSetModule", []);
-var db = new PouchDB('http://localhost:5984/framework');
-var mapsetting;
 
-mapSetModule.controller('AppSetCtrl', function($scope, $http, $state, $stateParams) {
-    
+mapSetModule.service('DataService', function(){
+    var db = new PouchDB('http://localhost:5984/framework');
+    var mapsetting;
+    var self = this;
+    self.groupnum = 0;
+    // ！！！！todo，用nodejs先在server side获取数据库数据
     db.get("mapsetting").then(function(doc) {
-        mapsetting = doc;
-        console.log(mapsetting);
-
-        $scope.appstyle = "map";
-        $scope.studentnum = mapsetting.studentnum;
-        $scope.groupnum = mapsetting.groupnum;
-
-        $scope.appSet = function(){
-            mapsetting.studentnum = $scope.studentnum;
-            mapsetting.groupnum = $scope.groupnum;
-        }
-
-    }).catch(function(err){
+        self.mapsetting = doc;
+    },self).catch(function(err){
         console.log(err);
     });
 });
 
-mapSetModule.controller('MapSetCtrl', function($scope, $http, $state, $stateParams) {
-    $scope.markers = mapsetting.markers;
-    $scope.longtitude = mapsetting.longtitude;
-    $scope.laititude = mapsetting.laititude;
+mapSetModule.controller('AppSetCtrl', function($scope, DataService) {
+    console.log(DataService);
+});
 
-    $scope.deleteMarker = function($event,marker){
-        var index = $scope.markers.indexOf(marker);
-        $scope.markers.splice(index,1);
+mapSetModule.controller('MapSetCtrl', function($scope, DataService) {
+    var db = new PouchDB('http://localhost:5984/framework');
+    
+    $scope.longtitude = DataService.mapsetting.longtitude;
+    $scope.laititude = DataService.mapsetting.laititude;
+    $scope.markers = DataService.mapsetting.markers;
+    $scope.steps = DataService.mapsetting.steps;
+    $scope.groups = DataService.mapsetting.groups;
+  
+    $scope.deleteItem = function($event,item,items){
+        var index = items.indexOf(item);
+        items.splice(index,1);
         console.log("delete");
     }
-    
     $scope.addMarker = function(){
-        $scope.markers.push($scope.add);
-        $scope.add = undefined;
+        $scope.markers.push($scope.newMarker);
+        $scope.newMarker = undefined;
     }
-
+    $scope.addStep = function(){
+        $scope.steps.push({content:""});
+    }    
+    $scope.addGroup = function(){
+        $scope.groups.push({name:"",student:""});
+    }
     $scope.setMap = function(){
-        mapsetting.longtitude = $scope.longtitude;
-        mapsetting.laititude = $scope.laititude;
-        mapsetting.eval = $scope.eval;
-        mapsetting.markers = $scope.markers;
-        console.log(mapsetting);
+        // mapsetting.longtitude = $scope.longtitude;
+        // mapsetting.laititude = $scope.laititude;
+        // mapsetting.eval = $scope.eval;
+        // mapsetting.markers = $scope.markers;
+        // mapsetting.studentnum = $scope.studentnum;
+        // mapsetting.groupamount = $scope.groupamount;
+        console.log($scope);
 
         db.get('mapsetting').then(function(doc) {
           return db.put({
             _id: 'mapsetting',
             _rev: doc._rev,
-            eval: mapsetting.eval,
-            laititude: mapsetting.laititude,
-            longtitude: mapsetting.longtitude,
-            markers: mapsetting.markers,
-            studentnum: mapsetting.studentnum,
-            groupnum: mapsetting.groupnum
+            eval: $scope.eval,
+            laititude: $scope.laititude,
+            longtitude: $scope.longtitude,
+            markers: $scope.markers,
+            steps: $scope.steps,
+            groups: $scope.groups,
           });
         }).then(function(response) {
           // handle response
