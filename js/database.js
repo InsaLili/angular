@@ -79,21 +79,39 @@ var note_4={
     _id:"note_4",
     "notes":[]
 }
-db.put(note_2).then(function (response) {
+
+var vote_1={
+    _id: "vote_1",
+    "votes":[{
+        "player":1,
+        "location":1,
+        "vote":1,
+        "id": "1/1"
+    },{
+        "player":2,
+        "location":2,
+        "vote:":1,
+        "id": "2/2"
+    }]
+}
+var vote_2={
+    _id: "vote_2",
+    "votes":[]
+}
+var vote_3={
+    _id: "vote_3",
+    "votes":[]
+}
+var vote_4={
+    _id: "vote_4",
+    "votes":[]
+}
+db.put(vote_1).then(function (response) {
   // handle response
 }).catch(function (err) {
   console.log(err);
 });
-db.put(note_3).then(function (response) {
-  // handle response
-}).catch(function (err) {
-  console.log(err);
-});
-db.put(note_4).then(function (response) {
-  // handle response
-}).catch(function (err) {
-  console.log(err);
-});
+
 
     // console.log(data.markers);
     // // var mydoc = JSON.parse(data);

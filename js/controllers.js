@@ -26,22 +26,18 @@ mapSetModule.controller('MapSetCtrl', function($scope, DataService) {
     $scope.markers = DataService.mapsetting.markers;
     $scope.steps = DataService.mapsetting.steps;
     $scope.groups = DataService.mapsetting.groups;
-  
+    $scope.add = DataService.mapsetting.additional;
+
+
     $scope.deleteItem = function($event,item,items){
         var index = items.indexOf(item);
         items.splice(index,1);
         console.log("delete");
     }
-    $scope.addMarker = function(){
-        $scope.markers.push($scope.newMarker);
-        $scope.newMarker = undefined;
-    }
-    $scope.addStep = function(){
-        $scope.steps.push({content:""});
-    }    
-    $scope.addGroup = function(){
-        $scope.groups.push({name:"",student:""});
-    }
+    $scope.addItem = function(items){
+        items.push({});
+    } 
+
     $scope.setMap = function(){
         // mapsetting.longtitude = $scope.longtitude;
         // mapsetting.laititude = $scope.laititude;
@@ -55,12 +51,12 @@ mapSetModule.controller('MapSetCtrl', function($scope, DataService) {
           return db.put({
             _id: 'mapsetting',
             _rev: doc._rev,
-            eval: $scope.eval,
             laititude: $scope.laititude,
             longtitude: $scope.longtitude,
             markers: $scope.markers,
             steps: $scope.steps,
             groups: $scope.groups,
+            additional: $scope.add
           });
         }).then(function(response) {
           // handle response

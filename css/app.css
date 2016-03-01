@@ -22,3 +22,9 @@ body{
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+.radio, .timer, .notenunm{
+	float: left;
+}
+.noteBadge label, .commonSpace label{
+	font-weight: 400;
+}
