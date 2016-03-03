@@ -41,6 +41,11 @@ mapSetModule.controller('MapSetCtrl', function($scope, DataService) {
     $scope.handleFiles = function(element){
         var file = element.files[0];
         var index = angular.element(element).scope().$index;
+        // if no file is chosen, set photo value to undefined
+        if(file == undefined){
+            $scope.markers[index].photo = undefined;
+            return;
+        }
         var reader = new FileReader();
         // Closure to capture the file information.
         reader.onload = (function(theFile) {
