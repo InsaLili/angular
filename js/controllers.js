@@ -36,8 +36,20 @@ mapSetModule.controller('MapSetCtrl', function($scope, DataService) {
     }
     $scope.addItem = function(items){
         items.push({});
-    } 
-
+    }
+    // store marker picture to database
+    $scope.handleFiles = function(element){
+        var file = element.files[0];
+        var index = angular.element(element).scope().$index;
+        var reader = new FileReader();
+        // Closure to capture the file information.
+        reader.onload = (function(theFile) {
+            return function(e) {
+                $scope.markers[index].photo = e.target.result;
+            };
+        })(file);
+        reader.readAsDataURL(file);
+    }
     $scope.setMap = function(){
         // mapsetting.longtitude = $scope.longtitude;
         // mapsetting.laititude = $scope.laititude;

@@ -6,9 +6,10 @@ body{
 }
 
 .item{
-	margin-bottom: 10px;
-	padding-bottom: 10px;
-	border-bottom: 1px solid #E0E0E0;
+	margin-top: 10px;
+	/*margin-bottom: 10px;*/
+	padding-top: 20px;
+	border-top: 1px solid #E0E0E0;
 }
 .list-group-item{
 	height: 40px;
@@ -19,12 +20,13 @@ body{
 	border: 1px solid #E0E0E0;
 }
 #showMarkers{
-	margin-top: 10px;
-	margin-bottom: 10px;
 }
 .radio, .timer, .notenunm{
 	float: left;
 }
 .noteBadge label, .commonSpace label{
 	font-weight: 400;
+}
+.stepBtn{
+	margin-bottom: 30px;
 }
