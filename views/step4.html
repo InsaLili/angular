@@ -1,0 +1,56 @@
+<div class="row item">
+	<div class="col-md-4">
+		<h4>Additional functionalities</h4>
+	</div>
+	<div class="col-md-8">
+		<div class="row form-group">
+			<div class="row">
+				<div class="col-md-5">
+					<label>Indentify the evaluation scale: </label>
+					<br>
+					(number of stars):
+				</div>
+				<div class="col-md-7">
+					<div class="form-inline">
+						<input type="number" class="form-control" step="any" placeholder="0" ng-model="person.stars">
+						<label>stars</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row form-group">
+			<div class="row">
+	    	<div class="col-md-5">
+	    		<label>Add criteria for evaluating alternatives:</label>
+	    		<br>
+	    		(optional)
+	    	</div>
+	    	<div class="col-md-7">
+	    		<div class="panel-group">
+						<div class="panel panel-default" ng-repeat="cri in cris">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-target="#cir-{{$index}}"  ng-bind="cri.name"></a>
+									<button type="button" class="btn btn-default btn-xs pull-right" ng-click="deleteItem($event,cri,cris)"><span class="glyphicon glyphicon-trash"></span></button>
+								</h4>
+							</div>
+							<div id="cir-{{$index}}" class="panel-collapse collapse" >
+								<form class="form-horizontal markerArea" role="form" name="form">
+									<div class="form-group">
+										<label class="control-label col-md-3">
+											Name
+										</label>
+										<div class="col-md-9">
+											<input type="text" class="form-control" ng-model="cri.name">
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div> 
+					<button class="btn btn-info" ng-click="addCri(cris)"><span class="glyphicon glyphicon-plus"></span>  Add marker</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,223 @@
+<div class="container" ng-controller="CtrlStep2">
+	<div class="col-md-12">
+		<h3>Step2/4: define sequence and mechanism of the acitivity</h3>
+		<button class="btn btn-default" data-toggle="collapse" data-target="#instruction">? Instruction</button>
+		<div id="instruction" class="panel-collapse collapse">
+			<p>There are two main tasks (T1, T2) and one optional task (T3) in a decision making process. </p>
+			<ul>
+				<li>T1: analyze and evaluate each alternative; </li>
+				<li>T2: compare alternatives and make decision; </li>
+				<li>T3: evaluate results. </li>
+			</ul>
+			<p>In this part, you will define how students are going to carry on these tasks to finish the activity.</p>
+		</div>
+		<!-- set the corrdination of the map -->
+		<div class="jumbotron" id="items">
+			<div class="row">
+				<div class="col-md-offset-1 col-md-10">
+					<div class="row item">
+							<div class="radio col-md-4">
+								<h4><input type="radio" name="sequence" value="restricted" ng-model="seqtype">S1: Restricted sequence</h4>
+								<div class="caption">
+									<p>(Students have to evaluate all the alternatives in T1 before they can move to T2 to choose the alternative.)</p>
+								</div>
+							</div>
+							<div class="col-md-8" ng-show="seqtype == 'restricted'">
+								<div class="panel-group">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<a data-toggle="collapse" data-target="#s1t1">Step1 (T1)</a>
+											</h4>
+										</div>
+										<div id="s1t1" class="panel-collapse collapse" >
+											<form class="form-horizontal markerArea" role="form">
+												<div class="form-group">
+													<label class="control-label col-md-3">
+														Title
+													</label>
+													<div class="col-md-9">
+														<input type="text" class="form-control" ng-model="reseq.s1.title">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-md-3">
+														Guidance in the 
+														<br>
+														pop-up dialogue
+													</label>
+													<div class="col-md-9">
+														<textarea class="form-control" ng-model="reseq.s1.dlg" placeholder="Detailed description in the pop-up dialog" rows="4"></textarea>
+													</div>
+												</div>					
+												<div class="form-group">
+													<h5 class="col-md-12">
+														Choose which evaluation condition to use to enable step2:
+													</h5>
+													<div class="col-md-12 btn-group">
+														<div class="radio col-md-12">
+															<label><input type="radio" name="t1eval" value="individual" ng-model="reseq.s1.eval">E1: Each student needs to evaluate all the alternatives</label>
+														</div>
+														<div class="radio col-md-12">
+															<label><input type="radio" name="t1eval" value="group" ng-model="reseq.s1.eval">E2: A group needs to evaluate all the alternatives</label>
+														</div>
+													</div>
+												</div>	
+											</form>
+										</div>
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<a data-toggle="collapse" data-target="#s2t2">Step2 (T2)</a>
+											</h4>
+										</div>
+										<div id="s2t2" class="panel-collapse collapse" >
+											<form class="form-horizontal markerArea" role="form">
+												<div class="form-group">
+													<label class="control-label col-md-3">
+														Title
+													</label>
+													<div class="col-md-9">
+														<input type="text" class="form-control" ng-model="reseq.s2.title">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-md-3">
+														Guidance in the 
+														<br>
+														pop-up dialogue
+													</label>
+													<div class="col-md-9">
+														<textarea class="form-control" ng-model="reseq.s2.dlg" placeholder="Detailed description in the pop-up dialog" rows="4"></textarea>
+													</div>
+												</div>					
+												<div class="form-group">
+													<h5 class="col-md-12">
+														Choose how many alternatives you want students to choose in the end:
+													</h5>
+													<div class="col-md-12 btn-group">
+														<div class="radio col-md-12">
+															<label><input type="radio" name="t2alt" value="one" ng-model="reseq.s2.alter">Choose only one alternative</label>
+														</div>
+														<div class="radio col-md-12">
+															<label><input type="radio" name="t2alt" value="multiple" ng-model="reseq.s2.alter">Choose multiple dlternatives</label>
+														</div>
+													</div>
+												</div>	
+											</form>
+										</div>
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+											    <input type="checkbox" ng-model="enableS3">
+											    <a data-toggle="collapse" data-target="#s3t3" ng-class="{disabled: !enableS3}">Step3 (T3 optional)
+											    </a>
+											</h4>
+										</div>
+										<div id="s3t3" class="panel-collapse collapse" ng-show="enableS3">
+											<form class="form-horizontal markerArea" role="form">
+												<div class="form-group">
+													<label class="control-label col-md-3">
+														Title
+													</label>
+													<div class="col-md-9">
+														<input type="text" class="form-control" ng-model="reseq.s3.title">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-md-3">
+														Guidance in the 
+														<br>
+														pop-up dialogue
+													</label>
+													<div class="col-md-9">
+														<textarea class="form-control" ng-model="reseq.s3.dlg" placeholder="Detailed description in the pop-up dialog" rows="4"></textarea>
+													</div>
+												</div>					
+											</form>
+										</div>
+									</div>
+								</div> 
+							</div>
+					</div>
+					<div class="row item">
+							<div class="radio col-md-4">
+								<h4><input type="radio" name="sequence" value="unrestricted" ng-model="seqtype">S2: Unestricted sequence</h4>				
+								<div class="caption">
+									<p>(T1 and T2 are mixed, students can make the choice while they are checking and evaluating alternatives.)</p>
+								</div>
+							</div>
+							<div class="col-md-8" ng-show="seqtype == 'unrestricted'">
+								<div class="panel-group">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<a data-toggle="collapse" data-target="#s1t1t2">Step1 (T1&T2)</a>
+											</h4>
+										</div>
+										<div id="s1t1t2" class="panel-collapse collapse" >
+											<form class="form-horizontal markerArea" role="form">
+												<div class="form-group">
+													<label class="control-label col-md-3">
+														Title
+													</label>
+													<div class="col-md-9">
+														<input type="text" class="form-control" ng-model="unseq.s1.title">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-md-3">
+														Guidance in the 
+														<br>
+														pop-up dialogue
+													</label>
+													<div class="col-md-9">
+														<textarea class="form-control" ng-model="unseq.s1.dlg" placeholder="Detailed description in the pop-up dialog" rows="4"></textarea>
+													</div>
+												</div>					
+											</form>
+										</div>
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+											    <input type="checkbox" ng-model="enableS2">
+											    <a data-toggle="collapse" data-target="#s2t3" ng-class="{disabled: !enableS2}">Step2 (T3 optional)
+											    </a>
+											</h4>
+										</div>
+										<div id="s2t3" class="panel-collapse collapse" ng-show="enableS2">
+											<form class="form-horizontal markerArea" role="form">
+												<div class="form-group">
+													<label class="control-label col-md-3">
+														Title
+													</label>
+													<div class="col-md-9">
+														<input type="text" class="form-control" ng-model="unseq.s2.title">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-md-3">
+														Guidance in the 
+														<br>
+														pop-up dialogue
+													</label>
+													<div class="col-md-9">
+														<textarea class="form-control" ng-model="unseq.s2.dlg" placeholder="Detailed description in the pop-up dialog" rows="4"></textarea>
+													</div>
+												</div>					
+											</form>
+										</div>
+									</div>
+								</div> 
+							</div>
+					</div>
+					<a class="btn btn-primary" class="formerStepBtn" ng-click="changeStep()" ui-sref="step1"> <span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+					<a class="btn btn-primary pull-right" class="nextStepBtn" ng-click="changeStep()" ui-sref="step3">Next <span class="glyphicon glyphicon-chevron-right"></span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

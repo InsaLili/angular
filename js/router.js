@@ -27,12 +27,24 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/index',
             templateUrl: 'views/home.html'
         })
-        .state('setmap', {
-            url: '/setmap',
-            templateUrl: 'views/setmap.html'
+        .state('step1', {
+            url: '/step1',
+            templateUrl: 'views/step1.html'
+        })        
+        .state('step2', {
+            url: '/step2',
+            templateUrl: 'views/step2.html'
+        })        
+        .state('step3', {
+            url: '/step3',
+            templateUrl: 'views/step3.html'
         })
-        .state('map', {
-            url: '/map',
-            templateUrl: 'views/map.html'
+        .state('step4', {
+            url: '/step4',
+            templateUrl: 'views/step4.html'
+        })
+        .state('test', {
+            url: '/test',
+            templateUrl: 'views/test.html'
         })
 });
