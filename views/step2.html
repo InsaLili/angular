@@ -32,6 +32,7 @@
 										</div>
 										<div id="s1t1" class="panel-collapse collapse" >
 											<form class="form-horizontal markerArea" role="form">
+												<!-- customized title -->
 												<div class="form-group">
 													<label class="control-label col-md-3">
 														Title
@@ -40,6 +41,7 @@
 														<input type="text" class="form-control" ng-model="reseq.s1.title">
 													</div>
 												</div>
+												<!-- pop-up dialogue -->
 												<div class="form-group">
 													<label class="control-label col-md-3">
 														Guidance in the 
@@ -49,7 +51,8 @@
 													<div class="col-md-9">
 														<textarea class="form-control" ng-model="reseq.s1.dlg" placeholder="Detailed description in the pop-up dialog" rows="4"></textarea>
 													</div>
-												</div>					
+												</div>		
+												<!-- choose evaluation condition -->
 												<div class="form-group">
 													<h5 class="col-md-12">
 														Choose which evaluation condition to use to enable step2:
@@ -63,6 +66,18 @@
 														</div>
 													</div>
 												</div>	
+												<!-- choose evaluation scale -->
+												<div class="form-group">
+													<div class="col-md-6">
+														<h5>Indentify the evaluation scale (number of stars):</h5>
+													</div>
+													<div class="col-md-2">
+														<input type="number" step="any" class="form-control" ng-model="reseq.s1.scale">
+													</div>
+													<div class="col-md-2">
+														<h5>stars</h5>
+													</div>
+												</div>	
 											</form>
 										</div>
 									</div>
@@ -74,6 +89,7 @@
 										</div>
 										<div id="s2t2" class="panel-collapse collapse" >
 											<form class="form-horizontal markerArea" role="form">
+												<!-- customized title -->
 												<div class="form-group">
 													<label class="control-label col-md-3">
 														Title
@@ -82,6 +98,7 @@
 														<input type="text" class="form-control" ng-model="reseq.s2.title">
 													</div>
 												</div>
+												<!-- pop-up dialogue -->
 												<div class="form-group">
 													<label class="control-label col-md-3">
 														Guidance in the 
@@ -91,7 +108,8 @@
 													<div class="col-md-9">
 														<textarea class="form-control" ng-model="reseq.s2.dlg" placeholder="Detailed description in the pop-up dialog" rows="4"></textarea>
 													</div>
-												</div>					
+												</div>	
+												<!-- number of final decision -->
 												<div class="form-group">
 													<h5 class="col-md-12">
 														Choose how many alternatives you want students to choose in the end:
@@ -109,6 +127,7 @@
 										</div>
 									</div>
 									<div class="panel panel-default">
+										<!-- optional step3 -->
 										<div class="panel-heading">
 											<h4 class="panel-title">
 											    <input type="checkbox" ng-model="enableS3">
@@ -118,6 +137,7 @@
 										</div>
 										<div id="s3t3" class="panel-collapse collapse" ng-show="enableS3">
 											<form class="form-horizontal markerArea" role="form">
+												<!-- cuostomized title -->
 												<div class="form-group">
 													<label class="control-label col-md-3">
 														Title
@@ -126,6 +146,7 @@
 														<input type="text" class="form-control" ng-model="reseq.s3.title">
 													</div>
 												</div>
+												<!-- pop-up dialogue -->
 												<div class="form-group">
 													<label class="control-label col-md-3">
 														Guidance in the 
@@ -152,6 +173,7 @@
 							<div class="col-md-8" ng-show="seqtype == 'unrestricted'">
 								<div class="panel-group">
 									<div class="panel panel-default">
+										<!-- step title -->
 										<div class="panel-heading">
 											<h4 class="panel-title">
 												<a data-toggle="collapse" data-target="#s1t1t2">Step1 (T1&T2)</a>
@@ -159,6 +181,7 @@
 										</div>
 										<div id="s1t1t2" class="panel-collapse collapse" >
 											<form class="form-horizontal markerArea" role="form">
+												<!-- customised title -->
 												<div class="form-group">
 													<label class="control-label col-md-3">
 														Title
@@ -167,6 +190,7 @@
 														<input type="text" class="form-control" ng-model="unseq.s1.title">
 													</div>
 												</div>
+												<!-- pop-up dialogue -->
 												<div class="form-group">
 													<label class="control-label col-md-3">
 														Guidance in the 
@@ -176,11 +200,24 @@
 													<div class="col-md-9">
 														<textarea class="form-control" ng-model="unseq.s1.dlg" placeholder="Detailed description in the pop-up dialog" rows="4"></textarea>
 													</div>
+												</div>
+												<!-- choose evaluation scale -->
+												<div class="form-group">
+													<div class="col-md-6">
+														<h5>Indentify the evaluation scale (number of stars):</h5>
+													</div>
+													<div class="col-md-2">
+														<input type="number" step="any" class="form-control" ng-model="reseq.s1.scale">
+													</div>
+													<div class="col-md-2">
+														<h5>stars</h5>
+													</div>
 												</div>					
 											</form>
 										</div>
 									</div>
 									<div class="panel panel-default">
+										<!-- step title -->
 										<div class="panel-heading">
 											<h4 class="panel-title">
 											    <input type="checkbox" ng-model="enableS2">
@@ -190,6 +227,7 @@
 										</div>
 										<div id="s2t3" class="panel-collapse collapse" ng-show="enableS2">
 											<form class="form-horizontal markerArea" role="form">
+												<!-- customized title -->
 												<div class="form-group">
 													<label class="control-label col-md-3">
 														Title
@@ -198,6 +236,7 @@
 														<input type="text" class="form-control" ng-model="unseq.s2.title">
 													</div>
 												</div>
+												<!-- pop-up dialogue -->
 												<div class="form-group">
 													<label class="control-label col-md-3">
 														Guidance in the 

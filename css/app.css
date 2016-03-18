@@ -7,7 +7,7 @@ body{
 .nav, .pagination, .carousel, .panel-title a {
     cursor: pointer;
 }
-h4{
+h4,h5{
 	margin-top: 0;
 }
 #items{
@@ -64,4 +64,11 @@ h4{
 }
 .deviceType{
 	margin-right: 20px;
+}
+#criCheck label{
+	margin-top: 10px;
+	font-weight: bold;
+}
+.checkboxMargin input{
+	margin-right: 10px;
 }

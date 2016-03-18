@@ -74,7 +74,7 @@ mapSetModule.controller('CtrlStep1', [ "$scope", "DataService",function($scope, 
         $scope.newMarker = {};
     }
     $scope.addCri = function(){
-        $scope.cris.push($scope.newCri);
+        $scope.cris.teacher.push($scope.newCri);
         $scope.newCri = {};
     }    
     $scope.addInfo = function(){
@@ -123,21 +123,23 @@ mapSetModule.controller('CtrlStep1', [ "$scope", "DataService",function($scope, 
         DataService.mapstep1.map = $scope.map;
         DataService.mapstep1.markers = $scope.markers;
         DataService.mapstep1.infos = $scope.infos;
+        DataService.mapstep1.cris = $scope.cris;
 
-        // var db = new PouchDB('http://localhost:5984/framework');
-        // db.get('mapstep1').then(function(doc) {
-        //   return db.put({
-        //     _id: 'mapstep1',
-        //     _rev: doc._rev,
-        //     infos: $scope.infos,
-        //     map: $scope.map,
-        //     markers: $scope.markers
-        //   });
-        // }).then(function(response) {
-        //   // handle response
-        // }).catch(function (err) {
-        //   console.log(err);
-        // });
+        var db = new PouchDB('http://localhost:5984/framework');
+        db.get('mapstep1').then(function(doc) {
+          return db.put({
+            _id: 'mapstep1',
+            _rev: doc._rev,
+            infos: $scope.infos,
+            map: $scope.map,
+            markers: $scope.markers,
+            cris: $scope.cris
+          });
+        }).then(function(response) {
+          // handle response
+        }).catch(function (err) {
+          console.log(err);
+        });
     }
 }]);
 
@@ -146,31 +148,87 @@ mapSetModule.controller('CtrlStep2', [ "$scope", "DataService",function($scope, 
     $scope.reseq = DataService.mapstep2.reseq;
     $scope.unseq = DataService.mapstep2.unseq;
 
+    ($scope.reseq.s3 == undefined)?($scope.enableS3 = false):($scope.enableS3 = true);
+    ($scope.unseq.s2 == undefined)?($scope.enableS2 = false):($scope.enableS2 = true);
+
     $scope.changeStep = function(){
+        if(!$scope.enableS3){
+            $scope.reseq.s3 = undefined;
+        }
+        if(!$scope.enableS2){
+            $scope.unseq.s2 = undefined;
+        }
         DataService.mapstep2.seqtype = $scope.seqtype;
         DataService.mapstep2.reseq = $scope.reseq;
         DataService.mapstep2.unseq = $scope.unseq;
 
-        // var db = new PouchDB('http://localhost:5984/framework');
-        // db.get('mapstep2').then(function(doc) {
-        //   return db.put({
-        //     _id: 'mapstep2',
-        //     _rev: doc._rev,
-        //     seqtype: $scope.seqtype,
-        //     reseq: $scope.reseq,
-        //     unseq: $scope.unseq
-        //   });
-        // }).then(function(response) {
-        //   // handle response
-        // }).catch(function (err) {
-        //   console.log(err);
-        // });
+        var db = new PouchDB('http://localhost:5984/framework');
+        db.get('mapstep2').then(function(doc) {
+          return db.put({
+            _id: 'mapstep2',
+            _rev: doc._rev,
+            seqtype: $scope.seqtype,
+            reseq: $scope.reseq,
+            unseq: $scope.unseq
+          });
+        }).then(function(response) {
+          // handle response
+        }).catch(function (err) {
+          console.log(err);
+        });
     }
 }]);
 mapSetModule.controller('CtrlStep3', [ "$scope", "DataService",function($scope, DataService) {
-    $scope.share = DataService.mapstep3.share;
-    $scope.person = DataService.mapstep3.person;
-    $scope.cris = DataService.mapstep3.cris;
+    $scope.step = DataService.mapstep3.step;
+    $scope.indicator = DataService.mapstep3.indicator;
+    $scope.badge = DataService.mapstep3.badge;
+
+    if(DataService.mapstep2.seqtype == "restricted"){
+        $scope.step.s2 = true;
+        if(DataService.mapstep2.reseq.s3 == undefined){
+            $scope.step.s3 = false;
+        }else{
+            $scope.step.s3 = true;
+        }
+        if(DataService.mapstep2.reseq.s1.eval == "individual"){
+            $scope.probar = "individual"
+        }else{
+            $scope.probar = "group"
+        }
+    }else{
+        $scope.step.s3 = false;
+        if(DataService.mapstep2.unseq.s2 == undefined){
+            $scope.step.s2 = false;
+        }else{
+            $scope.step.s2 = true;
+        }
+    }
+
+    $scope.changeStep = function(){
+        DataService.mapstep3.step = $scope.step;
+        DataService.mapstep3.indicator = $scope.indicator;
+        DataService.mapstep3.badge = $scope.badge;
+
+        var db = new PouchDB('http://localhost:5984/framework');
+        db.get('mapstep3').then(function(doc) {
+          return db.put({
+            _id: 'mapstep3',
+            _rev: doc._rev,
+            step: $scope.step,
+            indicator: $scope.indicator,
+            badge: $scope.badge
+          });
+        }).then(function(response) {
+          // handle response
+        }).catch(function (err) {
+          console.log(err);
+        });
+    }
+}]);
+mapSetModule.controller('CtrlStep4', [ "$scope", "DataService",function($scope, DataService) {
+    $scope.share = DataService.mapstep4.share;
+    $scope.person = DataService.mapstep4.person;
+    $scope.cris = DataService.mapstep4.cris;
 
 
     $scope.addCri = function(cris){

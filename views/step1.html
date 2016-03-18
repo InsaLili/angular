@@ -178,11 +178,11 @@
 						</div>
 						<div class="col-md-8">
 							<div class="panel-group" id="showCris">
-								<div class="panel panel-default" ng-repeat="cri in cris">
+								<div class="panel panel-default" ng-repeat="cri in cris.teacher">
 									<div class="panel-heading">
 										<h4 class="panel-title">
 											{{cri.name}}
-											<button type="button" class="btn btn-default btn-xs pull-right" ng-click="deleteItem($event,cri,cris)"><span class="glyphicon glyphicon-trash"></span></button>
+											<button type="button" class="btn btn-default btn-xs pull-right" ng-click="deleteItem($event,cri,cris.teacher)"><span class="glyphicon glyphicon-trash"></span></button>
 										</h4>
 									</div>
 									<div id="cri-{{$index}}" class="panel-collapse collapse">
@@ -216,6 +216,12 @@
 										</div>
 									</div>
 								</form>
+							</div>
+							<div class="checkbox" id="criCheck">
+						    <label class="label-control">
+						     	<input type="checkbox" ng-model="cris.student">
+						     	Let students to add criteria by themselves
+						    </label>
 							</div>
 						</div>
 					</div>
