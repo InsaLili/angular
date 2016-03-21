@@ -85,7 +85,7 @@
 													Symbol num
 												</label>
 												<div class="col-md-9">
-													<input type="number" step="any" class="form-control" placeholder="0" ng-model="marker.icon.icon">
+													<input type="text" class="form-control" placeholder="input a number (0-99), ex: '1'; or one lower case letter, ex: 'a'" ng-model="marker.icon.icon">
 												</div>
 											</div>	
 											<div class="form-group">
@@ -140,7 +140,7 @@
 											Symbol num
 										</label>
 										<div class="col-md-9">
-											<input type="number" step="any" class="form-control" placeholder="0" ng-model="newMarker.icon.icon">
+											<input type="text" class="form-control" placeholder="input a number (0-99), ex: '1'; or one lower case letter, ex: 'a'" ng-model="newMarker.icon.icon">
 										</div>
 									</div>	
 									<div class="form-group">
@@ -311,10 +311,14 @@
 					<a class="btn btn-primary pull-right" class="nextStepBtn" ng-click="toStep2()" ui-sref="step2">Next <span class="glyphicon glyphicon-chevron-right"></span></a>
 				</div>
 				<div class="col-md-5">
-						<h4>Preview of the map</h4>
-						<div id="previewMap">
-							<leaflet width="100%" height="480px" lf-center="map" tiles="tiles" markers="markers"></leaflet>
-						</div>
+					<h4>Preview of the map</h4>
+					<div id="previewMap">
+						<leaflet width="100%" height="480px" lf-center="map" tiles="tiles" markers="markers"></leaflet>
+					</div>
+					<br>
+					<div>
+						You can adjust the map in preview, e.g. dragging the map to change the center coordinate, changing the zoom level, and dragging the markers to change their position
+					</div>
 				</div>
 			</div>
 		</div>

@@ -37,10 +37,10 @@
 						<div class="col-md-4">
 							<div class="row">
 								<div class="radio deviceType">
-									<label><input type="radio" name="persontype" value="display" ng-model="person.type">Tablet display</label>
+									<label><input type="radio" name="persontype" value="tablet" ng-model="person.type">Tablet</label>
 								</div>
 								<div class="radio deviceType">
-									<label><input type="radio" name="persontype" value="tablet" ng-model="person.type">Smartphone</label>
+									<label><input type="radio" name="persontype" value="phone" ng-model="person.type">Smartphone</label>
 								</div>
 								<div class="radio deviceType">
 									<label><input type="radio" name="persontype" value="none" ng-model="person.type">Not use</label>
@@ -68,12 +68,20 @@
 							<label>Evaluating alternatives</label>
 						</div>
 						<div class="col-md-7">
-							<div class="row">
+							<div class="row" ng-show="seqtype == 'restricted'">
 								<div class="col-md-offset-1 col-md-1">
-									<input type="radio" name="evalAlt" ng-model="share.eval">
+									<input type="checkbox" ng-model="share.eval" ng-show="evaltype == 'group'">
 								</div>
 								<div class="col-md-offset-8">
-									<input type="radio" name="evalAlt" ng-model="person.eval">
+									<input type="checkbox" ng-model="person.eval">
+								</div>
+							</div>
+							<div class="row" ng-show="seqtype == 'unrestricted'">
+								<div class="col-md-offset-1 col-md-1">
+									<input type="radio" name="evaltype" ng-model="share.eval">
+								</div>
+								<div class="col-md-offset-8">
+									<input type="radio" name="evaltype" ng-model="person.eval">
 								</div>
 							</div>
 						</div>
@@ -125,19 +133,19 @@
 					</div>
 					<div class="row item">
 						<div class="col-md-5">
-							<label>Add shared comments space (only on shared display)</label>
+							<label>Add shared comments space</label>
 						</div>
 						<div class="col-md-7">
 							<div class="row">
 								<div class="col-md-offset-1 col-md-1">
-									<input type="checkbox" ng-model="share.progress">
+									<input type="checkbox" ng-model="share.commonspace">
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="row item">
 						<div class="col-md-5">
-							<label>Writing comment to alternatives (only on personal device)</label>
+							<label>Writing comment to alternatives</label>
 						</div>
 						<div class="col-md-7">
 							<div class="row">
@@ -164,7 +172,7 @@
 						</div>
 					</div>
 					<a class="btn btn-primary" class="formerStepBtn" ng-click="changeStep()" ui-sref="step3"> <span class="glyphicon glyphicon-chevron-left"></span> Back</a>
-					<a class="btn btn-primary pull-right" class="nextStepBtn" ng-click="changeStep()" ui-sref="step4">Next <span class="glyphicon glyphicon-chevron-right"></span></a>
+					<a class="btn btn-primary pull-right" class="nextStepBtn" ng-click="submit()" ui-sref="step4">Save <span class="glyphicon glyphicon-chevron-right"></span></a>
 				</div>
 			</div>
 		</div>
