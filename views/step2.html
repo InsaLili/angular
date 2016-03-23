@@ -3,11 +3,12 @@
 		<h3>Step2/4: define sequence and mechanism of the acitivity</h3>
 		<button class="btn btn-default" data-toggle="collapse" data-target="#instruction">? Instruction</button>
 		<div id="instruction" class="panel-collapse collapse">
-			<p>There are two main tasks (T1, T2) and one optional task (T3) in a decision making process. </p>
+			<p>A decision making process awlays contains following tasks. </p>
 			<ul>
+				<li>T0 (optional): define criteria for evaluating alternatives. It is a prerequisite for a desicion making process. Besides the criteria you defined for students (in the former step) and you can let student add criteria by themselves.</li>
 				<li>T1: analyze and evaluate each alternative; </li>
 				<li>T2: compare alternatives and make decision; </li>
-				<li>T3: evaluate results. </li>
+				<li>T3 (optional): evaluate results. </li>
 			</ul>
 			<p>In this part, you will define how students are going to carry on these tasks to finish the activity.</p>
 		</div>
@@ -17,13 +18,47 @@
 				<div class="col-md-offset-1 col-md-10">
 					<div class="row item">
 							<div class="radio col-md-4">
-								<h4><input type="radio" name="sequence" value="restricted" ng-model="seqtype">S1: Restricted sequence</h4>
+								<h4><input type="radio" name="sequence" value="restricted" ng-model="seqtype">Seq1: Restricted sequence</h4>
 								<div class="caption">
 									<p>(Students have to evaluate all the alternatives in T1 before they can move to T2 to choose the alternative.)</p>
 								</div>
 							</div>
 							<div class="col-md-8" ng-show="seqtype == 'restricted'">
 								<div class="panel-group">
+									<div class="panel panel-default">
+										<!-- optional step0 -->
+										<div class="panel-heading">
+											<h4 class="panel-title">
+											    <input type="checkbox" ng-model="enableS0">
+											    <a data-toggle="collapse" data-target="#s0t0" ng-class="{disabled: !enableS0}">Step0 (T0 optional)
+											    </a>
+											</h4>
+										</div>
+										<div id="s0t0" class="panel-collapse collapse" ng-show="enableS0">
+											<form class="form-horizontal markerArea" role="form">
+												<!-- cuostomized title -->
+												<div class="form-group">
+													<label class="control-label col-md-3">
+														Title
+													</label>
+													<div class="col-md-9">
+														<input type="text" class="form-control" ng-model="reseq.s0.title">
+													</div>
+												</div>
+												<!-- pop-up dialogue -->
+												<div class="form-group">
+													<label class="control-label col-md-3">
+														Guidance in the 
+														<br>
+														pop-up dialogue
+													</label>
+													<div class="col-md-9">
+														<textarea class="form-control" ng-model="reseq.s0.dlg" placeholder="Detailed description in the pop-up dialog" rows="4"></textarea>
+													</div>
+												</div>					
+											</form>
+										</div>
+									</div>
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
@@ -77,7 +112,8 @@
 													<div class="col-md-2">
 														<h5>stars</h5>
 													</div>
-												</div>	
+												</div>
+												
 											</form>
 										</div>
 									</div>
@@ -165,13 +201,47 @@
 					</div>
 					<div class="row item">
 							<div class="radio col-md-4">
-								<h4><input type="radio" name="sequence" value="unrestricted" ng-model="seqtype">S2: Unestricted sequence</h4>				
+								<h4><input type="radio" name="sequence" value="unrestricted" ng-model="seqtype">Seq2: Unestricted sequence</h4>				
 								<div class="caption">
 									<p>(T1 and T2 are mixed, students can make the choice while they are checking and evaluating alternatives.)</p>
 								</div>
 							</div>
 							<div class="col-md-8" ng-show="seqtype == 'unrestricted'">
 								<div class="panel-group">
+									<div class="panel panel-default">
+										<!-- optional step0 -->
+										<div class="panel-heading">
+											<h4 class="panel-title">
+											    <input type="checkbox" ng-model="enableS0un">
+											    <a data-toggle="collapse" data-target="#s0t0un" ng-class="{disabled: !enableS0un}">Step0 (T0 optional)
+											    </a>
+											</h4>
+										</div>
+										<div id="s0t0un" class="panel-collapse collapse" ng-show="enableS0">
+											<form class="form-horizontal markerArea" role="form">
+												<!-- cuostomized title -->
+												<div class="form-group">
+													<label class="control-label col-md-3">
+														Title
+													</label>
+													<div class="col-md-9">
+														<input type="text" class="form-control" ng-model="unseq.s0.title">
+													</div>
+												</div>
+												<!-- pop-up dialogue -->
+												<div class="form-group">
+													<label class="control-label col-md-3">
+														Guidance in the 
+														<br>
+														pop-up dialogue
+													</label>
+													<div class="col-md-9">
+														<textarea class="form-control" ng-model="unseq.s0.dlg" placeholder="Detailed description in the pop-up dialog" rows="4"></textarea>
+													</div>
+												</div>					
+											</form>
+										</div>
+									</div>
 									<div class="panel panel-default">
 										<!-- step title -->
 										<div class="panel-heading">
@@ -201,18 +271,37 @@
 														<textarea class="form-control" ng-model="unseq.s1.dlg" placeholder="Detailed description in the pop-up dialog" rows="4"></textarea>
 													</div>
 												</div>
+												<!-- choose evaluation condition -->
+												<div class="form-group">
+													<div class="col-md-12">
+														<div class="caption">
+															<p>(In this sequence, each alternative only needs to be evaluated once.)</p>
+														</div>
+													</div>
+													<!-- <h5 class="col-md-12">
+														Choose which evaluation condition to use:
+													</h5>
+													<div class="col-md-12 btn-group">
+														<div class="radio col-md-12">
+															<label><input type="radio" name="s1eval" value="individual" ng-model="unseq.s1.eval">E1: An alternative will be evaluated by students separately, shared display will show the average of evaluation results of each alternative</label>
+														</div>
+														<div class="radio col-md-12">
+															<label><input type="radio" name="s1eval" value="group" ng-model="unseq.s1.eval">E2: An alternative will be evaluated once, by a group or by one student</label>
+														</div>
+													</div> -->
+												</div>
 												<!-- choose evaluation scale -->
 												<div class="form-group">
 													<div class="col-md-6">
 														<h5>Indentify the evaluation scale (number of stars):</h5>
 													</div>
 													<div class="col-md-2">
-														<input type="number" step="any" class="form-control" ng-model="reseq.s1.scale">
+														<input type="number" step="any" class="form-control" ng-model="unseq.s1.scale">
 													</div>
 													<div class="col-md-2">
 														<h5>stars</h5>
 													</div>
-												</div>					
+												</div>				
 											</form>
 										</div>
 									</div>

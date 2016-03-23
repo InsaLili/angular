@@ -68,22 +68,23 @@
 							<label>Evaluating alternatives</label>
 						</div>
 						<div class="col-md-7">
-							<div class="row" ng-show="seqtype == 'restricted'">
+							<div class="row">
+								<!-- only when in Seq1, evaltype == individual, hide share.eval -->
 								<div class="col-md-offset-1 col-md-1">
-									<input type="checkbox" ng-model="share.eval" ng-show="evaltype == 'group'">
+									<input type="checkbox" ng-model="share.eval" ng-show="evaltype == 'group'||seqtype == 'unrestricted'">
 								</div>
 								<div class="col-md-offset-8">
 									<input type="checkbox" ng-model="person.eval">
 								</div>
 							</div>
-							<div class="row" ng-show="seqtype == 'unrestricted'">
+							<!-- <div class="row" ng-show="seqtype == 'unrestricted'">
 								<div class="col-md-offset-1 col-md-1">
-									<input type="radio" name="evaltype" ng-model="share.eval">
+									<input type="radio" name="evaltype" value="true" ng-model="share.eval">
 								</div>
 								<div class="col-md-offset-8">
-									<input type="radio" name="evaltype" ng-model="person.eval">
+									<input type="radio" name="evaltype" value="true" ng-model="person.eval">
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 					<div class="row item">
@@ -93,10 +94,10 @@
 						<div class="col-md-7">
 							<div class="row">
 								<div class="col-md-offset-1 col-md-1">
-									<input type="radio" name="bookmark" ng-model="share.mark">
+									<input type="radio" name="bookmark" value="true" ng-model="share.mark">
 								</div>
 								<div class="col-md-offset-8">
-									<input type="radio" name="bookmark" ng-model="person.mark">
+									<input type="radio" name="bookmark" value="true" ng-model="person.mark">
 								</div>
 							</div>
 						</div>
@@ -172,7 +173,7 @@
 						</div>
 					</div>
 					<a class="btn btn-primary" class="formerStepBtn" ng-click="changeStep()" ui-sref="step3"> <span class="glyphicon glyphicon-chevron-left"></span> Back</a>
-					<a class="btn btn-primary pull-right" class="nextStepBtn" ng-click="submit()" ui-sref="step4">Save <span class="glyphicon glyphicon-chevron-right"></span></a>
+					<a class="btn btn-primary pull-right" class="nextStepBtn" ng-click="submit()" ui-sref="step4">Save <span class="glyphicon glyphicon-floppy-disk"></span></a>
 				</div>
 			</div>
 		</div>

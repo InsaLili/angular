@@ -135,15 +135,24 @@ mapSetModule.controller('CtrlStep2', [ "$scope", "DataService",function($scope, 
     $scope.reseq = DataService.mapstep2.reseq;
     $scope.unseq = DataService.mapstep2.unseq;
 
-    ($scope.reseq.s3 == undefined)?($scope.enableS3 = false):($scope.enableS3 = true);
-    ($scope.unseq.s2 == undefined)?($scope.enableS2 = false):($scope.enableS2 = true);
+    ($scope.reseq.s0.title == undefined)?($scope.enableS0 = false):($scope.enableS0 = true);
+    ($scope.unseq.s0.title == undefined)?($scope.enableS0un = false):($scope.enableS0un = true);
+
+    ($scope.reseq.s3.title == undefined)?($scope.enableS3 = false):($scope.enableS3 = true);
+    ($scope.unseq.s2.title == undefined)?($scope.enableS2 = false):($scope.enableS2 = true);
 
     $scope.changeStep = function(){
         if(!$scope.enableS3){
-            $scope.reseq.s3 = undefined;
+            $scope.reseq.s3 = {};
         }
         if(!$scope.enableS2){
-            $scope.unseq.s2 = undefined;
+            $scope.unseq.s2 = {};
+        }
+        if(!$scope.enableS0){
+            $scope.reseq.s0 = {};
+        }
+        if(!$scope.enableS2){
+            $scope.unseq.s0 = {};
         }
         DataService.mapstep2.seqtype = $scope.seqtype;
         DataService.mapstep2.reseq = $scope.reseq;
@@ -197,7 +206,7 @@ mapSetModule.controller('CtrlStep4', [ "$scope", "DataService",function($scope, 
     $scope.share = DataService.mapstep4.share;
     $scope.person = DataService.mapstep4.person;
     $scope.seqtype = DataService.mapstep2.seqtype;
-    $scope.evaltype = DataService.mapstep2.reseq.s1.eval;
+    ($scope.seqtype == "restricted")?($scope.evaltype = DataService.mapstep2.reseq.s1.eval):($scope.evaltype = DataService.mapstep2.unseq.s1.eval);
 
     $scope.changeStep = function(){
         DataService.mapstep4.share = $scope.share;
