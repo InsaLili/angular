@@ -246,7 +246,7 @@ mapSetModule.controller('CtrlStep4', [ "$scope", "DataService",function($scope, 
           console.log(err);
         });
 
-        db.get('mapstep3').then(function(doc) {
+        db.get('mapstep3').then(function (doc) {
           return db.put({
             _id: 'mapstep3',
             _rev: doc._rev,
@@ -260,18 +260,43 @@ mapSetModule.controller('CtrlStep4', [ "$scope", "DataService",function($scope, 
           console.log(err);
         });        
 
-        db.get('mapstep4').then(function(doc) {
+        db.get('mapstep4').then(function (doc) {
           return db.put({
             _id: 'mapstep4',
             _rev: doc._rev,
             person: $scope.person,
             share: $scope.share,
           });
-        }).then(function(response) {
+        }).then(function (response) {
           // handle response
         }).catch(function (err) {
           console.log(err);
         });
+    }
+}]);
+
+mapSetModule.controller('GroupCtrl', [ "$scope", "DataService",function($scope, DataService) {
+    $scope.groups = [];
+
+    $scope.deleteItem = function($event,item,items){
+        var index = items.indexOf(item);
+        items.splice(index,1);
+        console.log("delete");
+    }
+    $scope.addItem = function(items){
+        items.push({});
+    }
+
+    $scope.submit = function (){
+        var db = new PouchDB('http://localhost:5984/framework');
+        for(var i=1; i<=$scope.groups.length; i++){
+            var id = "vote_"+i;
+            db.putIfNotExists(id, {votes: []}).then(function (res) {
+              // success, res is {rev: '1-xxx', updated: true}
+            }).catch(function (err) {
+              // error
+            });
+        }
     }
 }]);
 
